@@ -1,0 +1,248 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+@layer base {
+  :root {
+    /* Light Mode - Black/Dark Blue text on White/Light BG, Yellow for primary actions */
+    --background: 0 0% 100%; /* White */
+    --foreground: 220 30% 15%; /* Dark Blue / Near Black for text */
+
+    --card: 0 0% 100%; /* White for cards */
+    --card-foreground: 220 30% 15%; /* Dark Blue / Near Black text on cards */
+
+    --popover: 0 0% 100%; /* White for popovers */
+    --popover-foreground: 220 30% 15%; /* Dark Blue / Near Black text on popovers */
+
+    --primary: 51 100% 50%; /* #FFD700 - Vibrant Yellow (for button backgrounds, highlights) */
+    --primary-foreground: 220 50% 5%; /* Almost Black for text on Yellow - CRITICAL FOR CONTRAST */
+
+    --secondary: 220 60% 95%; /* Lighter, desaturated Blue-Grey for secondary elements/backgrounds */
+    --secondary-foreground: 220 30% 25%; /* Darker Blue-Grey text on light secondary */
+
+    --muted: 220 30% 92%; /* Muted Blue-Grey */
+    --muted-foreground: 220 30% 45%; /* Greyer Blue text on muted */
+
+    --accent: 39 100% 50%; /* #FFA500 - Orange (for specific highlights or hover effects) */
+    --accent-foreground: 220 50% 5%; /* Almost Black for text on Orange - CRITICAL FOR CONTRAST */
+
+    --destructive: 0 84% 60%; /* Red */
+    --destructive-foreground: 0 0% 98%; /* White text on red */
+
+    --border: 220 25% 88%; /* Softer light blue-grey border */
+    --input: 0 0% 100%; /* White input background */
+    --ring: 51 100% 50%; /* Yellow for rings */
+
+    --chart-1: 51 100% 50%; 
+    --chart-2: 220 30% 50%;  
+    --chart-3: 220 30% 30%; 
+    --chart-4: 220 30% 70%; 
+    --chart-5: 220 30% 15%;  
+    --radius: 0.5rem;
+
+    /* Sidebar theme uses main dashboard theme variables */
+    --sidebar-background: 220 40% 10%; /* Deep Dark Blue for sidebar background (consistent with dark mode dashboard bg) */
+    --sidebar-foreground: 0 0% 95%; /* Light cool grey / Off-white for sidebar text */
+    --sidebar-primary: 51 100% 55%; /* Vibrant Yellow for active/primary items in sidebar */
+    --sidebar-primary-foreground: 220 50% 5%; /* Almost Black for text on yellow in sidebar */
+    --sidebar-accent: 220 40% 18%; /* Slightly Lighter Dark Blue for sidebar hover/active background */
+    --sidebar-accent-foreground: 51 100% 55%; /* Yellow text on sidebar hover/active background */
+    --sidebar-border: 220 40% 25%; /* Darker blue-grey border for sidebar */
+    --sidebar-ring: 51 100% 55%; /* Yellow for rings in sidebar */
+  }
+
+  .dark {
+    /* Dark Mode - Black, Dark Blue, Yellow Palette Focus */
+    --background: 220 40% 10%; /* Deep Dark Blue */
+    --foreground: 0 0% 95%; /* Light cool grey / Off-white for text */
+
+    --card: 220 40% 13%; /* Darker Blue for cards */
+    --card-foreground: 0 0% 92%; /* Light text on cards */
+
+    --popover: 220 40% 13%; /* Darker Blue for popovers */
+    --popover-foreground: 0 0% 92%; /* Light text on popovers */
+
+    --primary: 51 100% 55%; /* Vibrant Yellow (adjusted for dark) */
+    --primary-foreground: 220 50% 5%; /* Almost Black for text on Yellow - CRITICAL FOR CONTRAST */
+
+    --secondary: 220 40% 18%; /* Slightly Lighter Dark Blue for secondary */
+    --secondary-foreground: 0 0% 85%; /* Lighter grey text on dark secondary */
+
+    --muted: 220 40% 22%; /* Muted dark blue */
+    --muted-foreground: 0 0% 65%; /* Lighter grey text on muted dark blue */
+
+    --accent: 39 100% 55%; /* Orange (adjusted for dark) */
+    --accent-foreground: 220 50% 5%; /* Almost Black for text on Orange - CRITICAL FOR CONTRAST */
+    
+    --destructive: 0 70% 55%; /* Red (adjusted for dark) */
+    --destructive-foreground: 0 0% 98%; /* White text on red */
+
+    --border: 220 40% 25%; /* Darker blue-grey border */
+    --input: 220 40% 16%; /* Darker input background */
+    --ring: 51 100% 55%; /* Yellow for rings in dark mode */
+
+    --chart-1: 51 100% 55%; 
+    --chart-2: 0 0% 60%;  
+    --chart-3: 0 0% 80%; 
+    --chart-4: 0 0% 40%; 
+    --chart-5: 0 0% 95%;  
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  /* General links: use accent color (orange) for visibility, with very dark text on hover if background changes */
+  a:not(.no-blue-link) { 
+    @apply text-accent hover:text-accent/80; /* Orange text, slightly darker orange on hover */
+  }
+  .dark a:not(.no-blue-link) {
+     @apply text-accent hover:text-orange-400; /* Orange text, slightly lighter orange on hover in dark mode */
+  }
+}
+
+.btn-destructive-outline {
+    @apply bg-transparent text-destructive border-destructive hover:bg-destructive/10;
+}
+.dark .btn-destructive-outline {
+    @apply bg-transparent text-destructive border-destructive hover:bg-destructive/20;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+.animate-confetti-fall {
+  animation: confetti-fall linear; 
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-slide-in {
+  animation: slide-in 0.4s ease-out forwards;
+}
+
+@keyframes pulse-once {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); } 
+}
+.animate-pulse-once {
+  animation: pulse-once 0.5s ease-in-out;
+}
+
+
+/* Sidebar Menu Button Specific Styles */
+[data-sidebar="menu-button"] {
+  @apply text-sidebar-foreground; /* Uses themed sidebar text color */
+}
+
+[data-sidebar="menu-button"][data-active="true"] {
+  @apply bg-sidebar-accent text-sidebar-accent-foreground font-semibold; /* Sidebar hover/active BG and its corresponding text color */
+}
+
+[data-sidebar="menu-button"]:hover,
+[data-sidebar="menu-button"]:focus-visible { 
+  @apply bg-sidebar-accent text-sidebar-accent-foreground;
+}
+
+/* Header Search Chat Popover Styles */
+.search-chat-popover-content {
+  @apply shadow-2xl border-border;
+}
+
+.chat-bubble {
+  @apply break-words text-sm;
+}
+
+.chat-bubble-user {
+  @apply bg-primary text-primary-foreground; /* Yellow bg, Dark text */
+}
+
+.chat-bubble-ai {
+  @apply bg-card text-card-foreground border; /* Card bg, Default text */
+}
+
+/* Ensure logo in dark sidebar is white even in light system theme */
+.logo-in-dark-sidebar img {
+  filter: brightness(0) invert(1) contrast(200%);
+}
+/* If the main theme is dark, the AppLogo's own dark mode filter will also apply,
+   which should be fine, but this rule ensures it's white if the page is light
+   but the sidebar context is dark. */
+.dark .logo-in-dark-sidebar img {
+  filter: brightness(0) invert(1) contrast(200%); /* Explicitly keep it white */
+}
+
+/* Preloader specific animations */
+@keyframes preloader-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-preloader-fade-in {
+  animation: preloader-fade-in 0.3s ease-out forwards;
+}
+
+@keyframes preloader-icon-pulse {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+  50% { transform: scale(1.15) rotate(5deg); opacity: 1; }
+}
+.animate-preloader-icon-pulse {
+  animation: preloader-icon-pulse 2s infinite ease-in-out;
+}
+
+@keyframes preloader-text-slide-up {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-preloader-text-slide-up {
+  animation: preloader-text-slide-up 0.4s 0.1s ease-out forwards;
+}
+
+@keyframes preloader-progress-bar-indeterminate {
+  0% { transform: translateX(-100%) scaleX(0.5); }
+  50% { transform: translateX(0%) scaleX(0.3); }
+  100% { transform: translateX(100%) scaleX(0.5); }
+}
+.animate-preloader-progress-bar {
+  animation: preloader-progress-bar-indeterminate 1.5s infinite ease-in-out;
+}
+
+/* Custom Cursor Styles */
+body.custom-cursor-active, body.custom-cursor-active * {
+  cursor: none !important;
+}
+
+/* Class added to the cursor's parent div when hovering interactive elements */
+.cursor-pointer-interactive > svg {
+  transform: scale(1.25); /* Slightly scale up the SVG pointer */
+  fill: hsl(var(--accent)); /* Change fill to accent color */
+}
+
+/* Ensure SVG within the cursor div uses primary color by default */
+div[data-custom-cursor] > svg {
+  fill: hsl(var(--primary));
+  transition: transform 0.15s ease-out, fill 0.15s ease-out; /* Smooth transition for scale and fill */
+}
